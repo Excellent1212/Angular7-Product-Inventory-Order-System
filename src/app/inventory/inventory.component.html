@@ -1,54 +1,59 @@
 <app-navvar [selectedId]="1"></app-navvar>
 <div class = "container-fluid">
-<div class = "inventory-container top-50">
+    <div class = "inventory-container top-50">
         <span class = "current-inventory">Current Inventory</span>
         <table class="table table-hover table-fixed table-outline">
             <thead>
                 <tr>
-                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                    <th *ngFor="let field of inventoryFields" scope="col">{{field}} </th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr mdbTableCol *ngFor="let el of elements">
-                    <td scope="row" ><input [(ngModel)] = "el.id" type = "text" name = "{{el.id}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.ProductName" type = "text" name = "{{el.ProductName}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.SKU" type = "text" name = "{{el.SKU}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.Quantity" type = "text" name = "{{el.Quantity}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.Price" type = "text" name = "{{el.Price}}" disabled/></td>
+                <tr mdbTableCol *ngFor="let inventory of currentInventories">
+                    <td scope="row" >{{inventory.id}}</td>
+                    <td>{{inventory.ProductName}}</td>
+                    <td>{{inventory.SKU}}</td>
+                    <td>{{inventory.Quantity}}</td>
+                    <td>{{inventory.Price}}</td>
                     <td><button type="button" class="btn btn-success">Save</button></td>
-                    <td><button type="button" class="btn btn-warning left-15" (click) = "deleteInventory(el.id)">Remove</button></td>
+                    <td><button type="button" class="btn btn-warning" (click) = "deleteInventory(inventory.id)">Remove</button></td>
                 </tr>
             </tbody>
         </table>
         <span class = "current-inventory">Add Inventory</span>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline mb-3">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "productSearch"/>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <table class="table table-striped table-outline-add" matSort (matSortChange)="sortData($event)">
             <thead>
                 <tr>
-                    <th >Product Name</th>
+                    <th>No</th>
+                    <th>Product Name</th>
+                    <!-- <th class="text-center" mat-sort-header="productname">Product Name</th> -->
                     <th>SKU</th>
-                    <th mat-sort-header="vendor">Vendor</th>
+                    <th class="text-center" mat-sort-header="vendor">Vendor</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let inventory of sortedData">
+                <tr *ngFor="let inventory of sortedData; let i = index">
+                    <td>{{i + 1 }}</td>
                     <td>{{inventory.name}}</td>
                     <td>{{inventory.sku}}</td>
                     <td>{{inventory.vendor}}</td>
-                    <td><button type="button" class="btn btn-success" (click)="open(content)">Add</button></td>
+                    <td><button type="button" class="btn btn-success" (click)="showInventory(content)">Add</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-<ng-template #content let-c="close" let-d="dismiss">
+<ng-template #content let-close="close" let-dismiss="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Products of Order</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <h4 class="modal-title" id="modal-basic-title">Order Products</h4>
+        <button type="button" class="close" aria-label="Close" (click)="dismiss()">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -56,21 +61,21 @@
         <table class="table table-hover table-fixed table-outline">
             <thead>
                 <tr>
-                    <th *ngFor = "let head of headElementAddInventorys" scope="col">{{head}}</th>
+                    <th>No</th>
+                    <th *ngFor = "let field of inventoryFields2" scope="col">{{field}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr mdbTableCol *ngFor = "let el of addInventoryProducts">
-                    <!-- <td scope = "row">{{el.id}}</td> -->
-                    <td scope="row"><input type = "text" id = "newAttributeProductName" [(ngModel)] = "el.name" name = "{{el.name}}" disabled/></td>
-                    <td><input type = "text" id = "newAttributeSKU" [(ngModel)] = "el.sku" name = "{{el.sku}}" disabled/></td>
-                    <td><input type = "text" id = "newAttributeQuantity" [(ngModel)] = "el.vendor" name = "{{el.vendor}}" disabled/></td>
-                    <td></td>
+                <tr mdbTableCol *ngFor = "let inventory of inventories; let i = index;">
+                    <td>{{i + 1}}</td>
+                    <td>{{inventory.name}}</td>
+                    <td>{{inventory.sku}}</td>
+                    <td>{{inventory.vendor}}</td>
                 </tr> 
             </tbody>
         </table>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+        <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
     </div>
 </ng-template>

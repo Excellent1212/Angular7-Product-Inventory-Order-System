@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JsonApiModule } from 'angular-jsonapi';
-import { HttpClientModule, HttpErrorResponse, HttpClient} from '@angular/common/http';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +7,17 @@ import { HttpClientModule, HttpErrorResponse, HttpClient} from '@angular/common/
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  adminData: string [];
-  constructor(private httpService: HttpClient) { }
+  adminData: any;
+
+  constructor(private http: HttpService) { }
 
   ngOnInit() {
-    this.httpService.get('../assets/store.admin.json').subscribe(
+    this.http.getAdminData().subscribe(
       data => {
-        this.adminData = data as string [];
-        console.log(data);
+          this.adminData = data;
       },
-      (err: HttpErrorResponse) => {
-        console.log (err.message);
+      (err) => {
+        console.log (err);
       }
     );
   }

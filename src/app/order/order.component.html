@@ -1,25 +1,31 @@
 <app-navvar [selectedId]="2"></app-navvar>
 <div class = "container-fluid">
-    <div class = "inventory-container top-50">
+    <div class = "inventory-container mt-50">
         <span class = "current-inventory">Pending Orders</span>
         <table class="table table-hover table-fixed table-outline table-container">
             <thead>
                 <tr>
-                    <th *ngFor = "let head of headElements" scope="col">{{head}}</th>
+                    <th>NO</th>
+                    <th *ngFor = "let field of orderFields" scope="col">{{field}}</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr mdbTableCol *ngFor = "let el of elements">
-                    <td scope = "row">{{el.id}}</td>
-                    <td>{{el.UserFirstName}}</td>
-                    <td>{{el.UserLastName}}</td>
-                    <td>{{el.ProductName}}</td>
-                    <td>{{el.ProductSku}}</td>
-                    <td>{{el.Quantity}}</td>
-                    <td>{{el.Total}}</td>
+                <tr mdbTableCol *ngFor = "let product of orderProducts; let i = index;">
+                    <td >{{ i + 1 }}</td>
+                    <td>{{product.firstName}}</td>
+                    <td>{{product.lastName}}</td>
+                    <td>{{product.orderDetails.productName}}</td>
+                    <td>{{product.sku}}</td>
+                    <td>{{product.orderDetails.quantity}}</td>
+                    <td>{{product.orderSubtotal.finalTotal}}</td>
                     <td><button type="button" class="btn btn-success">Start</button></td>
-                    <td><button type="button" class="btn btn-info" (click)="open(content)">View</button></td>
-                    <td><button type="button" class="btn btn-warning left-15">Ready</button></td>
+                    <td><button type="button" class="btn btn-info" (click)="showOrder(content)">View</button></td>
+                    <td><button type="button" class="btn btn-warning ml-15">Ready</button></td>
                     <td><button type="button" class="btn btn-primary">Complete</button></td>
                     <td><button type="button" class="btn btn-danger">Cancel</button></td>
                 </tr> 
@@ -29,52 +35,51 @@
         <table class="table table-hover table-outline-add">
             <thead>
                 <tr>
-                    <th *ngFor = "let head of headModalElements" scope="col">{{head}}</th>
+                    <th>NO</th>
+                    <th *ngFor = "let field of orderFields2" scope="col">{{field}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr mdbTableCol *ngFor = "let el of orderProducts">
-                    <td scope = "row"><input [(ngModel)] = "el.userId" type = "text" name = "{{el.userId}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.firstName" type = "text" name = "{{el.firstName}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.lastName" type = "text" name = "{{el.lastName}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.orderDetails.productName" type = "text" name = "{{el.orderDetails.productName}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.ProductSku" type = "text" name = "{{el.ProductSku}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.orderDetails.quantity" type = "text" name = "{{el.orderDetails.quantity}}" disabled/></td>
-                    <td><input [(ngModel)] = "el.Total" type = "text" name = "{{el.Total}}" disabled/></td>
+                <tr mdbTableCol *ngFor = "let product of orderProducts; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{product.firstName}}</td>
+                    <td>{{product.lastName}}</td>
+                    <td>{{product.orderDetails.productName}}</td>
+                    <td>{{product.ProductSku}}</td>
+                    <td>{{product.orderDetails.quantity}}</td>
+                    <td>{{product.orderSubtotal.finalTotal}}</td>
                 </tr>
             </tbody>
         </table>    
     </div>
 </div>
 
-<ng-template #content let-c="close" let-d="dismiss">
+<ng-template #content let-close="close" let-dismiss="dismiss">
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Products of Order</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
+        <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <table class="table table-hover table-fixed table-outline">
             <thead>
                 <tr>
-                    <th *ngFor = "let head of headModalElements" scope="col">{{head}}</th>
+                    <th *ngFor = "let field of orderFields3" scope="col">{{field}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr mdbTableCol *ngFor = "let el of elements">
-                    <td scope = "row">{{el.id}}</td>
-                    <td>{{el.UserFirstName}}</td>
-                    <td>{{el.UserLastName}}</td>
-                    <td>{{el.ProductName}}</td>
-                    <td>{{el.ProductSku}}</td>
-                    <td>{{el.Quantity}}</td>
-                    <td>{{el.Total}}</td>
+                <tr mdbTableCol *ngFor = "let product of orderProducts; let i = index;">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{product.orderDetails.productId}}</td>
+                    <td>{{product.orderDetails.productName}}</td>
+                    <td>{{product.orderDetails.quantity}}</td>
+                    <td>{{product.orderDetails.price.selectedPrice.finalAmount}}</td>
                 </tr> 
             </tbody>
         </table>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+        <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
     </div>
 </ng-template>
