@@ -1,0 +1,80 @@
+<app-navvar [selectedId]="2"></app-navvar>
+<div class = "container-fluid">
+    <div class = "inventory-container top-50">
+        <span class = "current-inventory">Pending Orders</span>
+        <table class="table table-hover table-fixed table-outline table-container">
+            <thead>
+                <tr>
+                    <th *ngFor = "let head of headElements" scope="col">{{head}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr mdbTableCol *ngFor = "let el of elements">
+                    <td scope = "row">{{el.id}}</td>
+                    <td>{{el.UserFirstName}}</td>
+                    <td>{{el.UserLastName}}</td>
+                    <td>{{el.ProductName}}</td>
+                    <td>{{el.ProductSku}}</td>
+                    <td>{{el.Quantity}}</td>
+                    <td>{{el.Total}}</td>
+                    <td><button type="button" class="btn btn-success">Start</button></td>
+                    <td><button type="button" class="btn btn-info" (click)="open(content)">View</button></td>
+                    <td><button type="button" class="btn btn-warning left-15">Ready</button></td>
+                    <td><button type="button" class="btn btn-primary">Complete</button></td>
+                    <td><button type="button" class="btn btn-danger">Cancel</button></td>
+                </tr> 
+            </tbody>
+        </table>
+        <span class = "current-inventory">Past Orders</span>
+        <table class="table table-hover table-outline-add">
+            <thead>
+                <tr>
+                    <th *ngFor = "let head of headModalElements" scope="col">{{head}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr mdbTableCol *ngFor = "let el of orderProducts">
+                    <td scope = "row"><input [(ngModel)] = "el.userId" type = "text" name = "{{el.userId}}" disabled/></td>
+                    <td><input [(ngModel)] = "el.firstName" type = "text" name = "{{el.firstName}}" disabled/></td>
+                    <td><input [(ngModel)] = "el.lastName" type = "text" name = "{{el.lastName}}" disabled/></td>
+                    <td><input [(ngModel)] = "el.orderDetails.productName" type = "text" name = "{{el.orderDetails.productName}}" disabled/></td>
+                    <td><input [(ngModel)] = "el.ProductSku" type = "text" name = "{{el.ProductSku}}" disabled/></td>
+                    <td><input [(ngModel)] = "el.orderDetails.quantity" type = "text" name = "{{el.orderDetails.quantity}}" disabled/></td>
+                    <td><input [(ngModel)] = "el.Total" type = "text" name = "{{el.Total}}" disabled/></td>
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Products of Order</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table class="table table-hover table-fixed table-outline">
+            <thead>
+                <tr>
+                    <th *ngFor = "let head of headModalElements" scope="col">{{head}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr mdbTableCol *ngFor = "let el of elements">
+                    <td scope = "row">{{el.id}}</td>
+                    <td>{{el.UserFirstName}}</td>
+                    <td>{{el.UserLastName}}</td>
+                    <td>{{el.ProductName}}</td>
+                    <td>{{el.ProductSku}}</td>
+                    <td>{{el.Quantity}}</td>
+                    <td>{{el.Total}}</td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+    </div>
+</ng-template>

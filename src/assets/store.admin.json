@@ -1,0 +1,19 @@
+{
+    "id": "5a6f40ec030bd01b87fe8d00",
+    "name": "77 Dispensary",
+    "largeImage": "https://i2.wp.com/fosterbuds.com/wp-content/uploads/2017/04/FB_FosterInterior.jpg?resize=1200%2C750",
+    "address": {
+      "id": null,
+      "address": "19 Tester Ave",
+      "city": "Toronto",
+      "aptsuite": null,
+      "province": "Ontario",
+      "postal": null,
+      "phone": null,
+      "crossst": null,
+      "instructions": null,
+      "createdAt": null,
+      "current": false,
+      "location": null
+    }
+  }
