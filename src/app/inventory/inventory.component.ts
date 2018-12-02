@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { HttpService } from '../http.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { pipe } from 'rxjs';
-
+import { FilterProductPipe } from '../filterproduct.pipe';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',

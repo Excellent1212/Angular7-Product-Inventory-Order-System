@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +14,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { OrderComponent } from './order/order.component';
 import { NavvarComponent } from './navvar/navvar.component';
 import { MaterialModule } from './material-module';
+import { FilterProductPipe } from './filterproduct.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { MaterialModule } from './material-module';
     HomeComponent,
     InventoryComponent,
     OrderComponent,
-    NavvarComponent
+    NavvarComponent,
+    FilterProductPipe
   ],
   imports: [
     BrowserModule,

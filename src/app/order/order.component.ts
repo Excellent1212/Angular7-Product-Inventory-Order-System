@@ -16,8 +16,9 @@ export class OrderComponent implements OnInit {
   orderFields3 = ['No', 'ProductId', 'ProductName', 'Quantity', 'Price'];
 
   constructor(config: NgbModalConfig, private modalService: NgbModal, private http: HttpService) {
-  config.backdrop = 'static';
+    config.backdrop = 'static';
   }
+
   ngOnInit() {
     this.http.getOrders().subscribe(
       data => {
@@ -32,5 +33,4 @@ export class OrderComponent implements OnInit {
   showOrder(content) {
     this.modalService.open(content, { size: 'lg' });
   }
-
 }

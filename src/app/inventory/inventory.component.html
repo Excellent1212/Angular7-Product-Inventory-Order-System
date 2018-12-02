@@ -23,23 +23,28 @@
             </tbody>
         </table>
         <span class = "current-inventory">Add Inventory</span>
-        <form class="form-inline mb-3">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "productSearch"/>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
         <table class="table table-striped table-outline-add" matSort (matSortChange)="sortData($event)">
             <thead>
                 <tr>
+                    <th>
+                        <input class="form-control mr-sm-2 search-product" type="search" placeholder="Product Search" aria-label="Search" [(ngModel)] = "queryString"/>
+                    </th>
+                    <th>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
                     <th>No</th>
                     <th>Product Name</th>
-                    <!-- <th class="text-center" mat-sort-header="productname">Product Name</th> -->
                     <th>SKU</th>
                     <th class="text-center" mat-sort-header="vendor">Vendor</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let inventory of sortedData; let i = index">
+                <tr *ngFor="let inventory of sortedData| filterproduct: queryString: 'name'; let i = index">
                     <td>{{i + 1 }}</td>
                     <td>{{inventory.name}}</td>
                     <td>{{inventory.sku}}</td>
