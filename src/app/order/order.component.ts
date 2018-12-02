@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  showOrder(content) {
+  showOrder(content, id) {
     this.modalService.open(content, { size: 'lg' });
   }
 }

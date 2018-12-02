@@ -1,5 +1,5 @@
 <app-navvar [selectedId]="1"></app-navvar>
-<div class = "container-fluid">
+<div class = "container-fluid  no-padding">
     <div class = "inventory-container top-50">
         <span class = "current-inventory">Current Inventory</span>
         <table class="table table-hover table-fixed table-outline">
@@ -63,20 +63,14 @@
         </button>
     </div>
     <div class="modal-body">
-        <table class="table table-hover table-fixed table-outline">
+        <table class="table table-hover table-fixed">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th *ngFor = "let field of inventoryFields2" scope="col">{{field}}</th>
+                    <H3>Hello!</H3>
                 </tr>
             </thead>
             <tbody>
-                <tr mdbTableCol *ngFor = "let inventory of inventories; let i = index;">
-                    <td>{{i + 1}}</td>
-                    <td>{{inventory.name}}</td>
-                    <td>{{inventory.sku}}</td>
-                    <td>{{inventory.vendor}}</td>
-                </tr> 
+                <td><h1>Welcome!</h1></td>
             </tbody>
         </table>
     </div>

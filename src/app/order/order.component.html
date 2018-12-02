@@ -1,38 +1,38 @@
 <app-navvar [selectedId]="2"></app-navvar>
-<div class = "container-fluid">
-    <div class = "inventory-container mt-50">
-        <span class = "current-inventory">Pending Orders</span>
-        <table class="table table-hover table-fixed table-outline table-container">
+<div class = "container-fluid no-padding">
+    <div class = "order-container mt-50 ">
+        <span class = "pending-orders">Pending Orders</span>
+        <table class="table table-hover table-fixed table-outline w-100 d-block d-md-table"> 
             <thead>
                 <tr>
-                    <th>NO</th>
-                    <th *ngFor = "let field of orderFields" scope="col">{{field}}</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">NO</th>
+                    <th scope="col"*ngFor = "let field of orderFields">{{field}}</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr mdbTableCol *ngFor = "let product of orderProducts; let i = index;">
-                    <td >{{ i + 1 }}</td>
+                    <td>{{ i + 1 }}</td>
                     <td>{{product.firstName}}</td>
                     <td>{{product.lastName}}</td>
                     <td>{{product.orderDetails.productName}}</td>
                     <td>{{product.sku}}</td>
                     <td>{{product.orderDetails.quantity}}</td>
                     <td>{{product.orderSubtotal.finalTotal}}</td>
-                    <td><button type="button" class="btn btn-success">Start</button></td>
-                    <td><button type="button" class="btn btn-info" (click)="showOrder(content)">View</button></td>
+                    <td><button type="button" class="btn btn-success" >Start</button></td>
+                    <td><button type="button" class="btn btn-info" (click)="showOrder(content, id = i)">View</button></td>
                     <td><button type="button" class="btn btn-warning ml-15">Ready</button></td>
                     <td><button type="button" class="btn btn-primary">Complete</button></td>
                     <td><button type="button" class="btn btn-danger">Cancel</button></td>
                 </tr> 
             </tbody>
         </table>
-        <span class = "current-inventory">Past Orders</span>
-        <table class="table table-hover table-outline-add">
+        <span class = "pending-orders">Past Orders</span>
+        <table class="table table-hover table-outline-past">
             <thead>
                 <tr>
                     <th>NO</th>
@@ -69,12 +69,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr mdbTableCol *ngFor = "let product of orderProducts; let i = index;">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{product.orderDetails.productId}}</td>
-                    <td>{{product.orderDetails.productName}}</td>
-                    <td>{{product.orderDetails.quantity}}</td>
-                    <td>{{product.orderDetails.price.selectedPrice.finalAmount}}</td>
+                <tr mdbTableCol>
+                    <td>{{ id + 1 }}</td>
+                    <td>{{orderProducts[id].orderDetails.productId}}</td>
+                    <td>{{orderProducts[id].orderDetails.productName}}</td>
+                    <td>{{orderProducts[id].orderDetails.quantity}}</td>
+                    <td>{{orderProducts[id].orderDetails.price.selectedPrice.finalAmount}}</td>
                 </tr> 
             </tbody>
         </table>

@@ -1,14 +1,15 @@
-.inventory-container{
+.order-container{
     height: auto;
     margin: 0 auto;
     width: 80%;
     text-align: center;
+    display: table;
     // background-color: #a2b987;
 };
 .top-50{
     margin-top: 50px;
 };
-.current-inventory{
+.pending-orders{
     color: black;
     font-size: 35px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -20,7 +21,7 @@
 .table-outline{
     border: 2px solid #a4c3a3;
 }
-.table-outline-add{
+.table-outline-past{
     border: 2px solid #a49a08;
 };
 .table-container{
