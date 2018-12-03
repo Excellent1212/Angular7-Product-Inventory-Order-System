@@ -26,4 +26,17 @@
 };
 .table-container{
     width: 100%;
+};
+#orderButton-container .orderButton-text{
+    position:relative;
+    top:4px;
+    left:0px;
+    height: 5px;
+    visibility:hidden;
+    color: 	#005d00;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#orderButton-container:hover .orderButton-text{
+    visibility:visible;
 }
