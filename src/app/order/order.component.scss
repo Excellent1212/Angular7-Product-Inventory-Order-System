@@ -28,15 +28,31 @@
     width: 100%;
 };
 #orderButton-container .orderButton-text{
-    position:relative;
-    top:4px;
-    left:0px;
+    position: relative;
+    top: 4px;
+    left: 0px;
     height: 5px;
-    visibility:hidden;
-    color: 	#005d00;
+    text-align: center;
+    visibility: hidden;
+    color: #005d00;
     font-size: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #orderButton-container:hover .orderButton-text{
-    visibility:visible;
+    visibility: visible;
+}
+#completeButton-container .completeButton-text{
+    position: relative;
+    top: 4px;
+    left: 0px;
+    height: 5px;
+    width: 10px;
+    text-align: center;
+    visibility: hidden;
+    color: #005d00;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#completeButton-container:hover .completeButton-text{
+    visibility: visible;
 }
